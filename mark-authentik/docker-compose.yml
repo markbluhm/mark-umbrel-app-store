@@ -2,7 +2,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: authentik_web
-      APP_PORT: 10000
+      APP_PORT: 9000
       PROXY_AUTH_ADD: "false"
 
   server:
@@ -20,14 +20,12 @@ services:
       # AUTHENTIK_EMAIL__PORT: 587
       # AUTHENTIK_EMAIL__USERNAME: 
       # AUTHENTIK_EMAIL__PASSWORD: 
-      COMPOSE_PORT_HTTP: 10000
-      COMPOSE_PORT_HTTPS: 10443
     volumes:
       - ./media:/media
       - ./custom-templates:/templates
     ports:
-      - "10000:10000"
-      - "10443:10443"
+      - "9000:9000"
+      - "9443:9443"
     depends_on:
       postgres:
         condition: service_healthy
@@ -50,8 +48,6 @@ services:
       # AUTHENTIK_EMAIL__PORT: 587
       # AUTHENTIK_EMAIL__USERNAME: 
       # AUTHENTIK_EMAIL__PASSWORD:
-      COMPOSE_PORT_HTTP: 10000
-      COMPOSE_PORT_HTTPS: 10443
     # `user: root` and the docker socket volume are optional.
     # See more for the docker socket integration here:
     # https://goauthentik.io/docs/outposts/integrations/docker
